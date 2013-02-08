@@ -1,9 +1,5 @@
 module Translations
   class Translation
-    def self.load file
-      new YAML.load_file(file)
-    end
-
     attr_reader :locale
 
     def initialize translations
@@ -37,8 +33,8 @@ module Translations
       hash[parts.last] = value
     end
 
-    def to_yaml
-      { @locale => @translations }.to_yaml
+    def to_hash
+      { @locale => @translations }
     end
 
     private
