@@ -2,3 +2,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'translations'
+require 'translations/cli'
+
+cli = Translations::CLI.new ARGV
+cli.run
