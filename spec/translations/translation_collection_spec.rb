@@ -8,9 +8,9 @@ describe Translations::TranslationCollection do
   end
 
   it "should be Enumerable" do
-    translation1 = double("en")
-    translation2 = double("de")
-    translations = Translations::TranslationCollection.new [translation1, translation2]
+    translation1 = Translations::Translation.new({ "de" => { "save" => "Speichern" } })
+    translation2 = Translations::Translation.new({ "en" => { "save" => "Save" } })
+    translations = Translations::TranslationCollection.new [translation1, translation2], "en"
 
     enumerated_translations = []
 
