@@ -38,6 +38,8 @@ module Translations
             end
 
             puts
+
+            serializer.save @translations
           end
         end
       end

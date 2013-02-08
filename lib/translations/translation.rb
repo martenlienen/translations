@@ -37,6 +37,10 @@ module Translations
       hash[parts.last] = value
     end
 
+    def to_yaml
+      { @locale => @translations }.to_yaml
+    end
+
     private
     def keys_of_nested_hash hash
       hash.map do |key, value|

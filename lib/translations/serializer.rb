@@ -18,5 +18,13 @@ module Translations
     def translations
       TranslationCollection.new Dir["#{@directory}/*"].map { |file| Translation.load file }, @master
     end
+
+    def save translations
+      translations.each do |translation|
+        File.open File.join(@directory, "#{translation.locale}.yml"), "w" do |file|
+          file.write translation.to_yaml
+        end
+      end
+    end
   end
 end
