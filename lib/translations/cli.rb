@@ -1,6 +1,6 @@
 require "translations/commands/add_command"
 require "translations/global_options_parser"
-require "translations/translations"
+require "translations/translation_collection"
 
 module Translations
   class CLI
@@ -25,7 +25,7 @@ module Translations
 
         parser = GlobalOptionsParser.new
         options = parser.parse argv
-        translations = Translations.load options[:directory], options[:master]
+        translations = TranslationCollection.load options[:directory], options[:master]
 
         if Commands.const_defined? command_class
           Commands.const_get(command_class).new translations, argv
