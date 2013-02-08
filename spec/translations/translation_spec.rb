@@ -37,20 +37,28 @@ describe Translations::Translation do
     assert { translation["buttons.delete"] == "Delete" }
   end
 
-  it "should let you mutate translations through their keys" do
-    translation["buttons.delete"] = "Remove"
+  describe "#[]=" do
+    it "should let you mutate translations through their keys" do
+      translation["buttons.delete"] = "Remove"
 
-    assert { translation["buttons.delete"] == "Remove" }
-  end
+      assert { translation["buttons.delete"] == "Remove" }
+    end
 
-  it "should let you create new translations using keys" do
-    translation = Translations::Translation.new({
-      "en" => { }
-    })
+    it "should let you create new translations using keys" do
+      translation = Translations::Translation.new({
+                                                    "en" => { }
+                                                  })
 
-    translation["buttons.delete"] = "Delete"
+      translation["buttons.delete"] = "Delete"
 
-    assert { translation["buttons.delete"] == "Delete" }
+      assert { translation["buttons.delete"] == "Delete" }
+    end
+
+    it "should expand a node when you set a key that goes 'through' another translation" do
+      translation["save.success"] = "Success"
+
+      assert { translation["save.success"] == "Success" }
+    end
   end
 
   it "should have a Hash representation" do

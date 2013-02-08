@@ -27,6 +27,10 @@ module Translations
           translation[key] = { }
         end
 
+        if !translation[key].is_a? Hash
+          translation[key] = { }
+        end
+
         translation[key]
       end
 
