@@ -5,12 +5,6 @@ describe Translations::TranslationCollection do
   let(:translation_en) { Translations::Translation.new({ "en" => { "save" => "Save" } }) }
   let(:translations) { Translations::TranslationCollection.new [translation_de, translation_en], "en" }
 
-  describe "Loading the translation files" do
-    it "should create a new Translation collection that contains the translations from the given directory" do
-      assert { Translations::TranslationCollection.load("spec/fixtures/working", "en").map(&:locale).should == ["en", "de"] }
-    end
-  end
-
   it "should be Enumerable" do
     enumerated_translations = []
 

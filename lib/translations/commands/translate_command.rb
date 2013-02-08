@@ -23,7 +23,7 @@ module Translations
         @keys = keys
       end
 
-      def run highline
+      def run highline, serializer
         master = @translations.master
 
         @keys.each do |key|

@@ -2,18 +2,19 @@ require "highline"
 
 require "translations/commands/add_command"
 require "translations/commands/translate_command"
-require "translations/global_options_parser"
-require "translations/translation_collection"
+
+require "translations/serializer"
 
 module Translations
   class CLI
     def initialize argv
+      @serializer = Serializer.load argv
       @command = build_command argv
     end
 
     def run
       if @command
-        @command.run HighLine.new
+        @command.run HighLine.new, @serializer
       end
     end
 
@@ -26,11 +27,9 @@ module Translations
         command = argv.shift
         command_class = "#{command.capitalize}Command".to_sym
 
-        parser = GlobalOptionsParser.new
-        options = parser.parse argv
-        translations = TranslationCollection.load options[:directory], options[:master]
-
         if Commands.const_defined? command_class
+          translations = @serializer.translations
+
           Commands.const_get(command_class).from_arguments translations, argv
         else
           display_help_message

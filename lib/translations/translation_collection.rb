@@ -2,10 +2,6 @@ require "translations/translation"
 
 module Translations
   class TranslationCollection
-    def self.load directory, master
-      new Dir["#{directory}/*"].map { |file| Translation.load file }, master
-    end
-
     include Enumerable
 
     attr_reader :master

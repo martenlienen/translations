@@ -1,5 +1,5 @@
 module Translations
-  class GlobalOptionsParser
+  class SerializerOptionsParser
     def initialize
       @parser = OptionParser.new
     end
