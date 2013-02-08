@@ -43,6 +43,18 @@ module Translations
           end
         end
       end
+
+      def self.usage
+        <<-USAGE
+usage: translations translate LOCALE [KEY]
+
+Arguments
+---------
+
+- LOCALE: Name of the locale that you want to translate to
+- KEY: Key that you want to translate. If omitted, you will be asked to translate all missing keys
+        USAGE
+      end
     end
   end
 end

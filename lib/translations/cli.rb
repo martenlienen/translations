@@ -25,12 +25,17 @@ module Translations
         nil
       else
         command = argv.shift
-        command_class = "#{command.capitalize}Command".to_sym
+        command_symbol = "#{command.capitalize}Command".to_sym
 
-        if Commands.const_defined? command_class
+        if Commands.const_defined? command_symbol
           translations = @serializer.translations
+          command_class = Commands.const_get(command_symbol)
 
-          Commands.const_get(command_class).from_arguments translations, argv
+          begin
+            command_class.from_arguments translations, argv
+          rescue OptionParser::MissingArgument => e
+            puts e.message, "", command_class.usage
+          end
         else
           display_help_message
 
