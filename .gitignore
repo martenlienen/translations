@@ -1,0 +1,6 @@
+# Ignore project files
+.idea
+*.iml
+
+# Ignore build artifacts
+*.gem
