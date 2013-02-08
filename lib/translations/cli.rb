@@ -1,3 +1,5 @@
+require "highline"
+
 require "translations/commands/add_command"
 require "translations/commands/translate_command"
 require "translations/global_options_parser"
@@ -11,7 +13,7 @@ module Translations
 
     def run
       if @command
-        @command.run
+        @command.run HighLine.new
       end
     end
 
