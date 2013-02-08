@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/CQQL/translations"
 
   gem.add_development_dependency "rspec", "~> 2.12.0"
+  gem.add_development_dependency "wrong", "~> 0.7.0"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
