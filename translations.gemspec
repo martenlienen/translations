@@ -16,7 +16,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rspec", "~> 2.12.0"
   gem.add_development_dependency "wrong", "~> 0.7.0"
-  gem.add_development_dependency "fakefs", "~> 0.4.2"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
