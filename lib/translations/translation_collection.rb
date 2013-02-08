@@ -1,3 +1,5 @@
+require "translations/translation"
+
 module Translations
   class TranslationCollection
     def self.load directory, master

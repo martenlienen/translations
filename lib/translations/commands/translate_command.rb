@@ -6,10 +6,10 @@ module Translations
           raise OptionParser::MissingArgument, "Which locale do you want to translate into?"
         end
 
-        locale = argv[0]
+        locale = translations.for_locale(argv[0])
 
         keys = if argv.length == 1
-          translations.for_locale(locale).missing_keys_from_locale(translations.master)
+          locale.missing_keys_from_translation(translations.master)
         else
           [argv[1]]
         end
@@ -18,7 +18,9 @@ module Translations
       end
 
       def initialize translations, locale, keys
-
+        @translations = translations
+        @locale = locale
+        @keys = keys
       end
 
       def run
