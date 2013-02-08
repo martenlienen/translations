@@ -5,7 +5,7 @@ require 'translations/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "translations"
-  gem.version       = TranslationCollection::VERSION
+  gem.version       = Translations::VERSION
   gem.authors       = ["Marten Lienen"]
   gem.email         = ["marten.lienen@gmail.com"]
   gem.description   = %q{Manage YAML translations}
