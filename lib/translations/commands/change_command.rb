@@ -1,7 +1,7 @@
 module Translations
   module Commands
     class ChangeCommand
-      def initialize argv
+      def initialize translations, argv
 
       end
 

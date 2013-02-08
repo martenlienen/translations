@@ -1,7 +1,7 @@
 module Translations
   module Commands
     class MoveCommand
-      def initialize argv
+      def initialize translations, argv
 
       end
 

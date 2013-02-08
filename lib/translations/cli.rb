@@ -1,4 +1,6 @@
 require "translations/commands/add_command"
+require "translations/global_options_parser"
+require "translations/translations"
 
 module Translations
   class CLI
@@ -21,8 +23,12 @@ module Translations
         command = argv.shift
         command_class = "#{command.capitalize}Command".to_sym
 
-        if Translations::Commands.const_defined? command_class
-          Translations::Commands.const_get(command_class).new argv
+        parser = GlobalOptionsParser.new
+        options = parser.parse argv
+        translations = Translations.load options[:directory], options[:master]
+
+        if Commands.const_defined? command_class
+          Commands.const_get(command_class).new translations, argv
         else
           display_help_message
 
