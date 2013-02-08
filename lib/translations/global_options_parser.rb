@@ -15,7 +15,7 @@ module Translations
         options[:master] = locale
       end
 
-      @parser.parse argv
+      @parser.parse! argv
 
       options
     end

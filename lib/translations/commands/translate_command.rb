@@ -1,7 +1,11 @@
 module Translations
   module Commands
     class TranslateCommand
-      def initialize translations, argv
+      def self.from_arguments translations, argv
+        new translations, "", ""
+      end
+
+      def initialize translations, locale, keys
 
       end
 

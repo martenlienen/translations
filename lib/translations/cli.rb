@@ -1,4 +1,5 @@
 require "translations/commands/add_command"
+require "translations/commands/translate_command"
 require "translations/global_options_parser"
 require "translations/translation_collection"
 
@@ -28,7 +29,7 @@ module Translations
         translations = TranslationCollection.load options[:directory], options[:master]
 
         if Commands.const_defined? command_class
-          Commands.const_get(command_class).new translations, argv
+          Commands.const_get(command_class).from_arguments translations, argv
         else
           display_help_message
 
