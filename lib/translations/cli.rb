@@ -1,5 +1,6 @@
 require "highline"
 
+require "translations/commands/help_command"
 require "translations/commands/add_command"
 require "translations/commands/translate_command"
 
@@ -33,7 +34,7 @@ module Translations
 
           begin
             command_class.from_arguments translations, argv
-          rescue OptionParser::MissingArgument => e
+          rescue Exception => e
             puts e.message, "", command_class.usage
           end
         else
