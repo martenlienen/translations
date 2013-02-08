@@ -3,6 +3,7 @@ PATH
   specs:
     translations (0.0.1)
       highline (~> 1.6.15)
+      thor (~> 0.17.0)
 
 GEM
   remote: https://rubygems.org/
@@ -24,6 +25,7 @@ GEM
     ruby_parser (3.1.1)
       sexp_processor (~> 4.1)
     sexp_processor (4.1.4)
+    thor (0.17.0)
     wrong (0.7.0)
       diff-lcs (~> 1.1.2)
       predicated (~> 0.2.6)
