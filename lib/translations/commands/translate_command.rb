@@ -23,8 +23,23 @@ module Translations
         @keys = keys
       end
 
-      def run
+      def run highline
+        master = @translations.master
 
+        @keys.each do |key|
+          highline.say key
+          highline.say "#{master.locale}: #{master[key]}"
+
+          @translations.slaves.each do |translation|
+            answer = highline.ask "#{translation.locale}? ", String
+
+            if answer.length > 0
+              translation[key] = answer
+            end
+
+            puts
+          end
+        end
       end
     end
   end

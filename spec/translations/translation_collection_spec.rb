@@ -23,6 +23,10 @@ describe Translations::TranslationCollection do
     assert { translations.master == translation_en }
   end
 
+  it "should expose all translations that are not master as slaves" do
+    assert { translations.slaves == [translation_de] }
+  end
+
   describe "#for_locale" do
     it "should return the Translation for a locale" do
       assert { translations.for_locale("de") == translation_de }

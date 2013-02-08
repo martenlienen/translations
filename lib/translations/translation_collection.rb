@@ -22,5 +22,9 @@ module Translations
     def for_locale locale
       @translations.select { |translation| translation.locale == locale }.first
     end
+
+    def slaves
+      @translations.reject { |translation| translation == master }
+    end
   end
 end
