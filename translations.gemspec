@@ -12,6 +12,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{}
   gem.homepage      = "https://github.com/CQQL/translations"
 
+  gem.add_dependency "highline", "~> 1.6.15"
+
   gem.add_development_dependency "rspec", "~> 2.12.0"
   gem.add_development_dependency "wrong", "~> 0.7.0"
   gem.add_development_dependency "fakefs", "~> 0.4.2"
