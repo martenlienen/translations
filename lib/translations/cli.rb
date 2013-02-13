@@ -1,9 +1,5 @@
 require "thor"
 
-require "translations/commands/help_command"
-require "translations/commands/add_command"
-require "translations/commands/translate_command"
-
 require "translations/serializer"
 
 module Translations
