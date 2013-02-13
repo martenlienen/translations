@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
-require 'rubygems'
-require 'bundler/setup'
-require 'translations'
-require 'translations/cli'
+require "rubygems"
+require "bundler/setup"
+require "translations/cli"
 
-cli = Translations::CLI.new ARGV
-cli.run
+Translations::CLI.start
