@@ -7,7 +7,7 @@ module Translations
     class_option :directory, aliases: ["-d"], default: "config/locales", type: :string, desc: "Directory containing the translations"
     class_option :master, aliases: ["-m"], default: "en", type: :string, desc: "The master locale"
 
-    desc "translate LOCALE [KEYS]", ""
+    desc "translate LOCALE [KEYS]", "Translate the KEYS into the given LOCALE"
     def translate locale, *keys
       @serializer = Serializer.new options.directory, options.master
       translations = @serializer.translations
