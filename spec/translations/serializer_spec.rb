@@ -1,18 +1,6 @@
 require "translations/serializer"
 
 describe Translations::Serializer do
-  describe "Parsing of command line arguments" do
-    it "should return a serializer" do
-      assert { Translations::Serializer.load([]).is_a? Translations::Serializer }
-    end
-
-    it "should take arguments for the base directory and master" do
-      Translations::Serializer.should_receive(:new).with("path/to/translations", "de")
-
-      Translations::Serializer.load ["-d", "path/to/translations", "-m", "de"]
-    end
-  end
-
   describe "#translations" do
     let(:serializer) { Translations::Serializer.new("spec/fixtures/working", "en") }
 

@@ -1,3 +1,5 @@
+require "thor"
+
 require "highline"
 
 require "translations/commands/help_command"
@@ -7,48 +9,39 @@ require "translations/commands/translate_command"
 require "translations/serializer"
 
 module Translations
-  class CLI
-    def initialize argv
-      @serializer = Serializer.load argv
-      @command = build_command argv
-    end
+  class CLI < Thor
+    class_option :directory, aliases: ["-d"], default: "config/locales", type: :string, desc: "Directory containing the translations"
+    class_option :master, aliases: ["-m"], default: "en", type: :string, desc: "The master locale"
 
-    def run
-      if @command
-        @command.run HighLine.new, @serializer
+    desc "translate LOCALE [KEYS]", ""
+    def translate locale, *keys
+      @serializer = Serializer.new options.directory, options.master
+      translations = @serializer.translations
+
+      translation = translations.for_locale(locale)
+
+      if keys.length == 0
+        keys = translation.missing_keys_from_translation(translations.master)
       end
-    end
 
-    def build_command argv
-      if argv.length == 0
-        display_help_message
+      master = translations.master
 
-        nil
-      else
-        command = argv.shift
-        command_symbol = "#{command.capitalize}Command".to_sym
+      keys.each do |key|
+        say key
+        say "#{master.locale}: #{master[key]}"
 
-        if Commands.const_defined? command_symbol
-          translations = @serializer.translations
-          command_class = Commands.const_get(command_symbol)
+        translations.slaves.each do |translation|
+          answer = ask "#{translation.locale}? "
 
-          begin
-            command_class.from_arguments translations, argv
-          rescue Exception => e
-            puts e.message, "", command_class.usage
+          if answer.length > 0
+            translation[key] = answer
           end
-        else
-          display_help_message
 
-          nil
+          puts
+
+          @serializer.save translations
         end
       end
-    end
-
-    def display_help_message
-      puts <<-HELP
-USAGE: translations add KEY
-      HELP
     end
   end
 end
