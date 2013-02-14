@@ -22,5 +22,9 @@ module Translations
     def slaves
       @translations.reject { |translation| translation == master }
     end
+
+    def remove key
+      @translations.each { |translation| translation.remove key }
+    end
   end
 end

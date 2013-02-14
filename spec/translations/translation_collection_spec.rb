@@ -26,4 +26,13 @@ describe Translations::TranslationCollection do
       assert { translations.for_locale("de") == translation_de }
     end
   end
+
+  describe "#remove" do
+    it "should remove the given key from all translations" do
+      translations.remove "save"
+
+      assert { translation_de.has_key?("save") == false }
+      assert { translation_en.has_key?("save") == false }
+    end
+  end
 end

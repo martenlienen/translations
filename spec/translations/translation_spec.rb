@@ -33,8 +33,28 @@ describe Translations::Translation do
     translation_de.missing_keys_from_translation(translation).should == ["save", "buttons.delete"]
   end
 
-  it "should expose translations through their keys" do
-    assert { translation["buttons.delete"] == "Delete" }
+  describe "#has_key?" do
+    it "should return true if the key exists" do
+      assert { translation.has_key?("buttons.delete") == true }
+    end
+
+    it "should return false if the key does not exist" do
+      assert { translation.has_key?("key.does.not.exist") == false }
+    end
+
+    it "should return false if the key does not exist" do
+      assert { translation.has_key?("buttons.xxx") == false }
+    end
+  end
+
+  describe "#[]" do
+    it "should expose translations through their keys" do
+      assert { translation["buttons.delete"] == "Delete" }
+    end
+
+    it "should raise an exception if the key is not found" do
+      assert { rescuing { translation["key.does.not.exist"] }.is_a? Translations::Translation::InvalidKeyException }
+    end
   end
 
   describe "#[]=" do
@@ -58,6 +78,14 @@ describe Translations::Translation do
       translation["save.success"] = "Success"
 
       assert { translation["save.success"] == "Success" }
+    end
+  end
+
+  describe "#remove" do
+    it "should remove the key" do
+      translation.remove "buttons.delete"
+
+      assert { translation.has_key?("buttons.delete") == false }
     end
   end
 

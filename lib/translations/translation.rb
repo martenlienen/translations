@@ -1,5 +1,9 @@
 module Translations
   class Translation
+    class InvalidKeyException < ArgumentError
+
+    end
+
     attr_reader :locale
 
     def initialize translations
@@ -15,8 +19,26 @@ module Translations
       translation.keys - keys
     end
 
+    def has_key? key
+      translation = key.split(".").inject(@translations) do |translation, key|
+        if translation.nil?
+          nil
+        else
+          translation[key]
+        end
+      end
+
+      translation != nil
+    end
+
     def [] key
-      key.split(".").inject(@translations) { |translation, key| translation[key] }
+      key.split(".").inject(@translations) do |translation, key|
+        if translation.nil?
+          raise InvalidKeyException
+        else
+          translation[key]
+        end
+      end
     end
 
     def []= key, value
@@ -35,6 +57,17 @@ module Translations
       end
 
       hash[parts.last] = value
+    end
+
+    def remove key
+      parts = key.split(".")
+      last_part = parts.pop
+
+      parent = parts.inject(@translations) do |translation, key|
+        translation[key]
+      end
+
+      parent.delete last_part
     end
 
     def to_hash
