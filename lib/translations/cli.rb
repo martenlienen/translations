@@ -61,7 +61,7 @@ module Translations
       serializer.save translations
     end
 
-    desc "add KEY", "Add a new KEY to all translations"#
+    desc "add KEY", "Add a new KEY to all translations"
     long_desc <<-DESC
       Add a key and provide translations for as many locales as you can.
     DESC
@@ -79,7 +79,7 @@ module Translations
       end
 
       translations.slaves.each do |translation|
-        answer = ask "#{translation.locale}? "
+        answer = ask "#{translation.locale}?"
 
         if answer.length > 0
           translation[key] = answer
