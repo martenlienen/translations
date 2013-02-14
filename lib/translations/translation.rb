@@ -70,6 +70,12 @@ module Translations
       parent.delete last_part
     end
 
+    def move from, to
+      self[to] = self[from]
+
+      remove from
+    end
+
     def to_hash
       { @locale => @translations }
     end

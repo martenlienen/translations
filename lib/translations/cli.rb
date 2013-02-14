@@ -48,6 +48,15 @@ module Translations
       serializer.save translations
     end
 
+    desc "move FROM TO", "Move a translation from FROM to TO"
+    def move from, to
+      translations = serializer.translations
+
+      translations.move from, to
+
+      serializer.save translations
+    end
+
     no_tasks do
       def serializer
         @serializer ||= Serializer.new options.directory, options.master

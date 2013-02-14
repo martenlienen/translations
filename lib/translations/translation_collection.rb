@@ -26,5 +26,9 @@ module Translations
     def remove key
       @translations.each { |translation| translation.remove key }
     end
+
+    def move from, to
+      @translations.each { |translation| translation.move from, to }
+    end
   end
 end

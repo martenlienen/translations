@@ -35,4 +35,13 @@ describe Translations::TranslationCollection do
       assert { translation_en.has_key?("save") == false }
     end
   end
+
+  describe "#move" do
+    it "should move the key in all translations" do
+      translations.move "save", "x_save"
+
+      assert { translation_de["x_save"] == "Speichern" }
+      assert { translation_en["x_save"] == "Save" }
+    end
+  end
 end

@@ -89,6 +89,20 @@ describe Translations::Translation do
     end
   end
 
+  describe "#move" do
+    it "should move the key" do
+      translation.move "buttons.delete", "actions.crud.delete"
+
+      assert { translation["actions.crud.delete"] == "Delete" }
+    end
+
+    it "should remove the old key" do
+      translation.move "buttons.delete", "actions.crud.delete"
+
+      assert { translation.has_key?("buttons.delete") == false }
+    end
+  end
+
   it "should have a Hash representation" do
     expected = {
       "en" => {
