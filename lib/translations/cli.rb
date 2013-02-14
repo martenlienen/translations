@@ -57,6 +57,31 @@ module Translations
       serializer.save translations
     end
 
+    desc "add KEY", "Add a new KEY to all translations"
+    def add key
+      translations = serializer.translations
+
+      answer = ask "#{translations.master.locale}? "
+
+      if answer.length == 0
+        say "You have to provide a translation for master"
+
+        return
+      else
+        translations.master[key] = answer
+      end
+
+      translations.slaves.each do |translation|
+        answer = ask "#{translation.locale}? "
+
+        if answer.length > 0
+          translation[key] = answer
+        end
+      end
+
+      serializer.save translations
+    end
+
     no_tasks do
       def serializer
         @serializer ||= Serializer.new options.directory, options.master
