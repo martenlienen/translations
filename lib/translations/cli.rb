@@ -9,7 +9,6 @@ module Translations
 
     desc "translate LOCALE [KEYS]", "Translate the KEYS into the given LOCALE"
     def translate locale, *keys
-      serializer = Serializer.new options.directory, options.master
       translations = serializer.translations
 
       translation = translations.for_locale(locale)
@@ -40,7 +39,6 @@ module Translations
 
     desc "remove KEYS", "Remove KEYS from all locales"
     def remove *keys
-      serializer = Serializer.new options.directory, options.master
       translations = serializer.translations
 
       keys.each do |key|
@@ -48,6 +46,12 @@ module Translations
       end
 
       serializer.save translations
+    end
+
+    no_tasks do
+      def serializer
+        @serializer ||= Serializer.new options.directory, options.master
+      end
     end
   end
 end
