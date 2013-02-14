@@ -111,6 +111,19 @@ module Translations
       serializer.save translations
     end
 
+    desc "update LOCALE KEY", "Update KEY in a specific LOCALE without changing it's meaning"
+    def update locale, key
+      translations = serializer.translations
+      translation = translations.for_locale(locale)
+
+      say "#{locale}: #{translation[key]}"
+      answer = ask "#{locale}?"
+
+      translation[key] = answer
+
+      serializer.save translations
+    end
+
     no_tasks do
       def serializer
         @serializer ||= Serializer.new options.directory, options.master
