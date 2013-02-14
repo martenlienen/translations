@@ -1,7 +1,7 @@
 Translations
 ============
 
-Edit your translation files all at once so that they do not get unnecessarily out of sync.
+Edit your translation files in a synchronized way.
 
 
 Naming
