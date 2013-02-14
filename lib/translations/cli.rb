@@ -8,6 +8,10 @@ module Translations
     class_option :master, aliases: ["-m"], default: "en", type: :string, desc: "The master locale"
 
     desc "translate LOCALE [KEYS]", "Translate the KEYS into the given LOCALE"
+    long_desc <<-DESC
+      Translate KEYS from the master to LOCALE. If you omit KEYS it will instead ask you to translate all keys that exist
+      in master but not in LOCALE.
+    DESC
     def translate locale, *keys
       translations = serializer.translations
 
@@ -57,7 +61,10 @@ module Translations
       serializer.save translations
     end
 
-    desc "add KEY", "Add a new KEY to all translations"
+    desc "add KEY", "Add a new KEY to all translations"#
+    long_desc <<-DESC
+      Add a key and provide translations for as many locales as you can.
+    DESC
     def add key
       translations = serializer.translations
 
@@ -83,6 +90,10 @@ module Translations
     end
 
     desc "change KEY", "Change the meaning of KEY"
+    long_desc <<-DESC
+      Changes the meaning of KEY in a way that requires re-translation to all locales. Therefore the key will be removed
+      from all locales for which you cannot provide a translation, so that it can be fixed using the translate command.
+    DESC
     def change key
       translations = serializer.translations
 
@@ -112,6 +123,9 @@ module Translations
     end
 
     desc "update LOCALE KEY", "Update KEY in a specific LOCALE without changing it's meaning"
+    long_desc <<-DESC
+      Just update KEY in LOCALE without altering any other locales.
+    DESC
     def update locale, key
       translations = serializer.translations
       translation = translations.for_locale(locale)
