@@ -24,7 +24,7 @@ module Translations
         say "#{master.locale}: #{master[key]}"
 
         translations.slaves.each do |translation|
-          answer = ask "#{translation.locale}? "
+          answer = ask "#{translation.locale}?"
 
           if answer.length > 0
             translation[key] = answer
@@ -61,14 +61,14 @@ module Translations
     def add key
       translations = serializer.translations
 
-      answer = ask "#{translations.master.locale}? "
+      answer = ask "#{translations.master.locale}?"
 
-      if answer.length == 0
+      if answer.length > 0
+        translations.master[key] = answer
+      else
         say "You have to provide a translation for master"
 
         return
-      else
-        translations.master[key] = answer
       end
 
       translations.slaves.each do |translation|
@@ -76,6 +76,35 @@ module Translations
 
         if answer.length > 0
           translation[key] = answer
+        end
+      end
+
+      serializer.save translations
+    end
+
+    desc "change KEY", "Change the meaning of KEY"
+    def change key
+      translations = serializer.translations
+
+      say "#{translations.master.locale}: #{translations.master[key]}"
+      answer = ask "#{translations.master.locale}?"
+
+      if answer.length > 0
+        translations.master[key] = answer
+      else
+        say "You have to provide a translation for master"
+
+        return
+      end
+
+      translations.slaves.each do |translation|
+        say "#{translation.locale}: #{translation[key]}"
+        answer = ask "#{translation.locale}?"
+
+        if answer.length > 0
+          translation[key] = answer
+        else
+          translation.remove key
         end
       end
 
