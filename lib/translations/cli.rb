@@ -138,6 +138,17 @@ module Translations
       serializer.save translations
     end
 
+    desc "view KEY", "View all translations for a given key"
+    def view key
+      serializer.translations.each do |translation|
+        if translation.has_key? key
+          say "#{translation.locale}: #{translation[key]}"
+        else
+          say "#{translation.locale} does not have key #{key}"
+        end
+      end
+    end
+
     no_tasks do
       def serializer
         @serializer ||= Serializer.new options.directory, options.master
