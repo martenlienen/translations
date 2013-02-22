@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Translations::VERSION
   gem.authors       = ["Marten Lienen"]
   gem.email         = ["marten.lienen@gmail.com"]
-  gem.description   = %q{Manage YAML translations}
-  gem.summary       = %q{}
+  gem.description   = "Manage YAML translations"
+  gem.summary       = "Stop wasting time altering the structure of your i18n files"
   gem.homepage      = "https://github.com/CQQL/translations"
 
   gem.add_dependency "thor", "~> 0.17.0"
