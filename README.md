@@ -17,7 +17,7 @@ The default master is `en`, but you may alter it using the `-m <locale>` switch.
 Usage
 -----
 
-Currently there are 6 commands to alter your translation files:
+Currently there are some commands to alter your translation files:
 
 - `add`: Add a new key to all your files
 - `update`: Update a key in a single file
@@ -25,6 +25,10 @@ Currently there are 6 commands to alter your translation files:
 - `move`: Move a key around
 - `remove`: Remove a key from all files
 - `translate`: Translate all keys that are missing from a given file
+
+And there are commands to view your translations:
+
+- `view`: View all translations for a given key
 
 For more info just run `translations help <command>`.
 
