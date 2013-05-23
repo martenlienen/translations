@@ -1,5 +1,7 @@
 require "translations/translation_collection"
 
+require "yaml"
+
 module Translations
   class Serializer
     def initialize directory, master

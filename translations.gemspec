@@ -12,10 +12,10 @@ Gem::Specification.new do |gem|
   gem.summary       = "Stop wasting time altering the structure of your i18n files"
   gem.homepage      = "https://github.com/CQQL/translations"
 
-  gem.add_dependency "thor", "~> 0.17.0"
+  gem.add_dependency "thor", "~> 0.18.1"
 
-  gem.add_development_dependency "rspec", "~> 2.12.0"
-  gem.add_development_dependency "wrong", "~> 0.7.0"
+  gem.add_development_dependency "rspec", "~> 2.13"
+  gem.add_development_dependency "wrong", "~> 0.7"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
