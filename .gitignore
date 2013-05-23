@@ -1,6 +1,12 @@
-# Ignore project files
+# Project files
 .idea
 *.iml
 
-# Ignore build artifacts
+# Build artifacts
 *.gem
+
+# Bin stubs
+/stubs
+
+# Installed gems
+/vendor/bundle
