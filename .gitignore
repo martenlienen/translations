@@ -1,3 +1,6 @@
+# Bundler settings
+.bundler
+
 # Project files
 .idea
 *.iml
