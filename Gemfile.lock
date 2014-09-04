@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    translations (0.2.1)
+    translations (0.3.0)
       thor (~> 0.18.1)
 
 GEM
