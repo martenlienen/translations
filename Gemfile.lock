@@ -9,6 +9,7 @@ GEM
   specs:
     diff-lcs (1.2.5)
     predicated (0.2.6)
+    rake (10.3.2)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -39,6 +40,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rake (~> 10.3)
   rspec (~> 3.0)
   translations!
   wrong (~> 0.7)

@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "thor", "~> 0.18.1"
 
+  gem.add_development_dependency "rake", "~> 10.3"
   gem.add_development_dependency "rspec", "~> 3.0"
   gem.add_development_dependency "wrong", "~> 0.7"
 
