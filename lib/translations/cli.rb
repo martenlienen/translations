@@ -41,6 +41,24 @@ module Translations
       end
     end
 
+    desc "validate LOCALE", "Validate that LOCALE contains all keys from master"
+    def validate locale
+      translations = serializer.translations
+      translation = translations.for_locale(locale)
+      keys = translation.missing_keys_from_translation(translations.master)
+
+      if keys.length > 0
+        say "Missing keys in #{locale}"
+        say
+
+        keys.each do |key|
+          say "- #{key}"
+        end
+
+        exit 1
+      end
+    end
+
     desc "remove KEYS", "Remove KEYS from all locales"
     def remove *keys
       translations = serializer.translations

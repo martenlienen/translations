@@ -29,6 +29,7 @@ Currently there are some commands to alter your translation files:
 And there are commands to view your translations:
 
 - `view`: View all translations for a given key
+- `validate`: Validate that a translations has all keys, that are in the master
 
 For more info just run `translations help <command>`.
 
