@@ -127,13 +127,15 @@ module Translations
       end
 
       translations.slaves.each do |translation|
-        say "#{translation.locale}: #{translation[key]}"
-        answer = ask "#{translation.locale}?"
+        if translation.has_key?(key)
+          say "#{translation.locale}: #{translation[key]}"
+          answer = ask "#{translation.locale}?"
 
-        if answer.length > 0
-          translation[key] = answer
-        else
-          translation.remove key
+          if answer.length > 0
+            translation[key] = answer
+          else
+            translation.remove key
+          end
         end
       end
 
