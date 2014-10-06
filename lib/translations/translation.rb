@@ -76,6 +76,8 @@ module Translations
       self[to] = self[from]
 
       remove from
+    rescue InvalidKeyException
+      # If the key does not exist, there is nothing to move
     end
 
     def to_hash
