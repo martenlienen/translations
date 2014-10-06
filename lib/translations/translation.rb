@@ -64,10 +64,12 @@ module Translations
       last_part = parts.pop
 
       parent = parts.inject(@translations) do |translation, key|
-        translation[key]
+        if translation.is_a?(Hash)
+          translation[key]
+        end
       end
 
-      parent.delete last_part
+      parent.delete(last_part) if parent.is_a?(Hash)
     end
 
     def move from, to
